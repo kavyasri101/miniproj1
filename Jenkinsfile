@@ -1,29 +1,26 @@
 pipeline {
     agent any
- 
     stages {
-        stage('Checkout') {
+        stage('Check Validate') {
             steps {
-                git branch: 'main', url: 'https://github.com/username/repo.git'
+                echo 'Validating the Program'
             }
         }
-        stage('Build') {
+        stage('Compilation') {
             steps {
-                sh 'echo "Building..."'
-                // Add your build steps here
+                echo 'Compiling the Program'
             }
         }
-        stage('Test') {
+        stage('Installation') {
             steps {
-                sh 'echo "Testing..."'
-                // Add your testing steps here
+                echo 'Installing the Program'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'echo "Deploying..."'
-                // Add your deployment steps here
+                echo 'Deploying the Program'
             }
         }
     }
 }
+
