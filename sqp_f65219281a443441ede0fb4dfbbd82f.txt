@@ -1,6 +1,0 @@
-sqp_f65219281a443441ede0fb4dfbbd82f3164d45b6
-mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=kavya \
-  -Dsonar.projectName='kavya' \
-  -Dsonar.host.url=http://localhost:9099 \
-  -Dsonar.token=sqp_f65219281a443441ede0fb4dfbbd82f3164d45b6
