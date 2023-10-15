@@ -27,7 +27,8 @@ pipeline {
             steps {
                 // Deploy the application (this might vary depending on your specific deployment process)
                 // For example, if you're deploying to a web server, you might use something like SCP or FTP
-                sh 'scp C:\Users\mkavy\Desktop\my-app'
+                sh  'scp C:\\Users\\mkavy\\Desktop\\my-app'
+
             }
         }
     }
