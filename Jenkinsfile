@@ -9,26 +9,27 @@ pipeline {
             }
         }
         
-        stage('Build') {
+        stage('Build and Test') {
             steps {
-                // Build the project using Maven
-                sh 'mvn clean install'
+                // Build and run tests using Maven
+                script {
+                    def mvnHome = tool 'Maven'
+                    sh "${mvnHome}/bin/mvn clean verify"
+                }
             }
         }
         
-        stage('Test') {
+        stage('SonarQube Analysis') {
             steps {
-                // Run automated tests
-                sh 'mvn test'
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                // Deploy the application (this might vary depending on your specific deployment process)
-                // For example, if you're deploying to a web server, you might use something like SCP or FTP
-                sh  'scp C:\\Users\\mkavy\\Desktop\\my-app'
-
+                // Perform SonarQube analysis
+                script {
+                    def mvnHome = tool 'Maven'
+                    sh "${mvnHome}/bin/mvn sonar:sonar \
+                        -Dsonar.projectKey=mks \
+                        -Dsonar.projectName='mks' \
+                        -Dsonar.host.url=http://localhost:9099 \
+                        -Dsonar.login=sqp_52389c3f36217516e7c02f2db787e39eae141d91"
+                }
             }
         }
     }
