@@ -1,26 +1,34 @@
 pipeline {
     agent any
+    
     stages {
-        stage('Check Validate') {
+        stage('Checkout') {
             steps {
-                echo 'Validating the Program'
+                // Check out the source code from version control
+                git 'https://github.com/kavyasri101/miniproj1.git'
             }
         }
-        stage('Compilation') {
+        
+        stage('Build') {
             steps {
-                echo 'Compiling the Program'
+                // Build the project using Maven
+                sh 'mvn clean install'
             }
         }
-        stage('Installation') {
+        
+        stage('Test') {
             steps {
-                echo 'Installing the Program'
+                // Run automated tests
+                sh 'mvn test'
             }
         }
+        
         stage('Deploy') {
             steps {
-                echo 'Deploying the Program'
+                // Deploy the application (this might vary depending on your specific deployment process)
+                // For example, if you're deploying to a web server, you might use something like SCP or FTP
+                sh 'scp target/your-project.jar user@your-server:/path/to/deployment/directory'
             }
         }
     }
 }
-
